@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { ThemeProvider } from 'styled-components';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { ThemeProvider } from 'styled-components'
-import { colorsDark } from 'styles/palette';
 import List from 'components/List';
-import { Wrapper, Title } from './styles';
 import Loader from 'components/Loader';
+import { colorsDark } from 'styles/palette';
+
+import { Wrapper, Title } from './styles';
 
 class App extends Component {
   componentDidMount() {
@@ -16,11 +17,10 @@ class App extends Component {
     if (!isFetching) {
       fetchStories({ storyIds, page });
     }
-  }
+  };
 
   render() {
     const { stories, hasMoreStories } = this.props;
-
     return (
       <ThemeProvider theme={colorsDark}>
         <div>
@@ -33,7 +33,7 @@ class App extends Component {
               loader={<Loader />}
               style={{
                 height: '100%',
-                overflow: 'visible'
+                overflow: 'visible',
               }}>
               <List stories={stories} />
             </InfiniteScroll>
